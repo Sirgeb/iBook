@@ -5,29 +5,27 @@ const jwt = require('jsonwebtoken');
 const UserSchema = new mongoose.Schema({
   firstname: {
     type: String,
-    require: true
+    required: true
   },
   lastname: {
     type: String,
-    require: true
+    required: true
   },
   email: {
     type: String,
-    require: true
+    required: true
   },
   password: {
     type: String,
-    require: true
+    required: true
   },
   role: {
     type: String,
     enum: ['user', 'publisher'],
     default: 'user'
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
   }
+}, {
+  timestamps: true
 });
 
 // Encrypt password using bcrypt

@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "env-cmd -f ./src/config.env nodemon ./src"
+    "dev": "env-cmd -f ./src/config.env nodemon ./src",
+    "import:data": "env-cmd -f ./src/config.env node temp/seeder.js -i",
+    "recycle:data": "env-cmd -f ./src/config.env node temp/seeder.js -r"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
