@@ -9,7 +9,7 @@ const users = [
     avatar: null,
     email: "johnsmith@yahoo.com",
     password: "********",
-    role: 'publisher'
+    role: 'admin'
   },
   {
     _id: ObjectId("604d15b07cea912dcc68117e"),

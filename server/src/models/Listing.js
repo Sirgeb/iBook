@@ -13,9 +13,13 @@ const ListingSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  geometry: {
-    lat: { type: Number, required: true },
-    lng: { type: Number, required: true }
+  lat: { 
+    type: Number, 
+    required: true 
+  },
+  lng: { 
+    type: Number, 
+    required: true 
   },
   price: {
     type: Number,
@@ -34,8 +38,7 @@ const ListingSchema = new mongoose.Schema({
     required: true
   },
   rating: {
-    type: Number,
-    required: true
+    type: Number
   },
   host: {
     type: mongoose.Schema.Types.ObjectId,
