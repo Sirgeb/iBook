@@ -7,11 +7,20 @@ const validateCreateListingInput = require('../validation/create-listing');
  * @access   Public
  */
 const getListings = async (req, res, next) => {
+  const limit = 10
+  const page = Number(req.query.page) || 1;
+
   try {
-    const listings = await Listing.find({});
+    const count = await Listing.countDocuments();
+    const listings = await Listing.find({})
+      .limit(limit)
+      .skip(limit * (page - 1));
+
     return res.status(200).json({
       success: true,
-      data: listings
+      data: listings,
+      page, 
+      pages: Math.ceil(count / limit)
     });
   } catch (error) {
     return res.status(500).json({

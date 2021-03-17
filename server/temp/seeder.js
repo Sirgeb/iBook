@@ -14,11 +14,11 @@ const users = require('./data/users');
 const importData = async () => {
   try {
     console.log("in progress...");
-    for (listing of listings) {
+    for (const listing of listings) {
       await Listing.create(listing)
     }
 
-    for (user of users) {
+    for (const user of users) {
       await User.create(user);
     }
     console.log("data imported successfully");

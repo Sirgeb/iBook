@@ -8,11 +8,20 @@ const validateLoginInput = require('../validation/login');
  * @access   Private/Admin
  */
 const getUsers = async (req, res, next) => {
+  const limit = 10
+  const page = Number(req.query.page) || 1;
+
   try {
-    const users = await User.find({});
+    const count = await User.countDocuments();
+    const users = await User.find({}) 
+      .limit(limit)
+      .skip(limit * (page - 1));
+
     return res.status(200).json({
       success: true,
-      data: users
+      data: users,
+      page, 
+      pages: Math.ceil(count / limit)
     });
   } catch (error) {
     return res.status(500).json({

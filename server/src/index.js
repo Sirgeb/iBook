@@ -6,8 +6,8 @@ const connectDB = require('./db');
 
 // import Route files 
 const userRoutes = require('./routes/users');
+const favoriteRoutes = require('./routes/favorites');
 const listingRoutes = require('./routes/listings');
-// const favoriteRoutes = require('./routes/favorites');
 
 // Connect to database 
 connectDB();
@@ -30,8 +30,8 @@ app.use(cors());
 
 // Mount routers
 app.use('/api/v1/users', userRoutes);
+app.use('/api/v1/favorites', favoriteRoutes);
 app.use('/api/v1/listings', listingRoutes);
-// app.use('/api/v1/favorites', favoriteRoutes);
 
 const PORT = process.env.PORT || 5000;
 
