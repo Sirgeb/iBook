@@ -5,7 +5,9 @@ import { ApartmentScreen } from '../../screens';
 const Apartment = createStackNavigator();
 
 export const ApartmentStack = () => (
-  <Apartment.Navigator>
+  <Apartment.Navigator
+    headerMode="none"
+  >
     <Apartment.Screen
       name="ApartmentScreen"
       component={ApartmentScreen}

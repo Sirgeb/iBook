@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator} from '@react-navigation/stack';
 import { useSelector } from 'react-redux';
-import { AuthStack, DrawerNav } from '..';
+import { AuthStack, BottomTab } from '..';
 
 const Root = createStackNavigator();
 
@@ -16,7 +16,7 @@ export const RootStack = () => {
         isLoggedIn ? (
           <Root.Screen
             name="Home"
-            component={DrawerNav}
+            component={BottomTab}
             options={{
               animationEnabled: false
             }}
