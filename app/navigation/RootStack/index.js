@@ -7,13 +7,13 @@ const Root = createStackNavigator();
 
 export const RootStack = () => {
   const { user: { isLoggedIn } } = useSelector(state => state);
-  
+  const isLogged = true;
   return (
     <Root.Navigator
       headerMode="none"
     >
       {
-        isLoggedIn ? (
+        isLogged ? (
           <Root.Screen
             name="Home"
             component={BottomTab}
