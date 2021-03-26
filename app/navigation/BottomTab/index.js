@@ -106,8 +106,8 @@ export const BottomTab = () => (
 const styles = StyleSheet.create({
   tabNavigator: {
     backgroundColor: colors.primary,
-    borderTopRightRadius: 50,
-    borderTopLeftRadius: 50,
+    borderTopRightRadius: 35,
+    borderTopLeftRadius: 35,
     borderTopColor: "transparent",
     height: 70,
     justifyContent: 'center',
@@ -118,9 +118,11 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   activeText: {
-    color: colors.secondary
+    color: colors.secondary,
+    fontSize: 10
   },
   inActiveText: {
-    color: colors.white
+    color: colors.white,
+    fontSize: 10
   }
 });
