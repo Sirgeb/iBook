@@ -1,6 +1,6 @@
 const apartments = [
   {
-    _id: 1,
+    id: 1,
     title: "Spacious Home",
     image: require('./assets/images/slider/Magnificent_suburban_house.jpg'),
     address: "Damrak 1 - 5, Amsterdam City Centre, 1012 LG Amsterdam, Netherlands",        
@@ -13,7 +13,7 @@ const apartments = [
     rating: 5
   },
   {
-    _id: 2,
+    id: 2,
     title: "Stylish and Modern Self Contained Apartment",
     image: require('./assets/images/slider/self-contained.jpg'),
     address: "12 IJsbaanpad, Oud Zuid, 1076 CV Amsterdam, Netherlands",        
@@ -26,7 +26,7 @@ const apartments = [
     rating: 3
   },
   {
-    _id: 3,
+    id: 3,
     title: "Luxury en suite",
     image: require('./assets/images/slider/Stunning_luxury_home.jpg'),
     address: "La Guardiaweg 59, Westpoort, 1043 DE Amsterdam, Netherlands",        
@@ -39,7 +39,7 @@ const apartments = [
     rating: 4
   },
   {
-    _id: 4,
+    id: 4,
     title: "Cosy and fully furnished appartment",
     image: require('./assets/images/slider/Two_Bedroom_flat.jpg'),
     address: "Leuvehaven 77, Centrum, 3011 EA Rotterdam, Netherlands",       
