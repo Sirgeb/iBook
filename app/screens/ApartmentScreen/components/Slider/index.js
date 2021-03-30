@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, Animated, Image, Dimensions } from 'react
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { colors } from '../../../../assets/colors';
 import apartments from '../../../../data';
+import { formatPrice } from '../../../../lib';
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('screen');
 const scrollX = new Animated.Value(0);
@@ -11,7 +12,6 @@ const dotPosition = Animated.divide(scrollX, screenWidth);
 export const Slider = () => {
   return (
     <View style={{
-      backgroundColor: colors.grey,
       marginTop: 10
     }}>
       <Animated.ScrollView
@@ -109,7 +109,7 @@ export const Slider = () => {
                 }}
               >
                 <Text style={{ marginTop: 10, color: colors.black, textAlign: 'center', fontSize: 16 }}>{apartment.title}</Text>
-                <Text style={{ fontSize: 16, color: colors.black }}> $250 / Day </Text>
+                <Text style={{ fontSize: 16, color: colors.black }}> {formatPrice(apartment.price)} / Day </Text>
               </View>
 
               {/* Check Out Button */}

@@ -1,7 +1,8 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, FlatList } from 'react-native'
 import { Header } from '../../components';
-import { Slider } from './components';
+import { ApartmentListitem, Slider } from './components';
+import apartments from '../../data';
 
 export const ApartmentScreen = ({ navigation }) => {
 
@@ -10,7 +11,24 @@ export const ApartmentScreen = ({ navigation }) => {
       <Header 
         navigation={navigation}
       />
-      <Slider />
+      <View style={{
+        paddingBottom: 140
+      }}>
+        <FlatList 
+          data={apartments}
+          showsVerticalScrollIndicator={false}
+          ListHeaderComponent={() => <Slider />}
+          contentContainerStyle={{
+            marginBottom: 100,
+          }}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => (
+            <ApartmentListitem 
+              apartment={item}
+            />
+          )}
+        />
+      </View>
     </View>
   )
 }

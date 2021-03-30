@@ -23,7 +23,7 @@ const apartments = [
     numOfGuests: 4,
     numOfBeds: 2,
     numOfBaths: 2,
-    rating: 3
+    rating: 3.5
   },
   {
     id: 3,
@@ -36,7 +36,7 @@ const apartments = [
     numOfGuests: 2,
     numOfBeds: 1,
     numOfBaths: 2,
-    rating: 4
+    rating: 1.5
   },
   {
     id: 4,
