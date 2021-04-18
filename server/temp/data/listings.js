@@ -214,7 +214,7 @@ const listings = [
   },
   {
     _id: ObjectId(),
-    title: "Cosy and fully furnished Appartment",
+    title: "Cosy and fully furnished Apartment",
     image:"https://res.cloudinary.com/chybesta123/image/upload/v1615600504/samples/appartments/Cosy_and_fully_furnished.jpg",
     host: ObjectId("604d15b07cea912dcc68117d"),
     address: "Leuvehaven 77, Centrum, 3011 EA Rotterdam, Netherlands",       

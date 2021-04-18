@@ -40,7 +40,7 @@ const apartments = [
   },
   {
     id: 4,
-    title: "Cosy and fully furnished appartment",
+    title: "Cosy and Fully Furnished Apartment",
     image: require('./assets/images/slider/Two_Bedroom_flat.jpg'),
     address: "Leuvehaven 77, Centrum, 3011 EA Rotterdam, Netherlands",       
     lat: 51.91344559615346, 

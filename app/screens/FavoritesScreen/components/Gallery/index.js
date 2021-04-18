@@ -110,6 +110,7 @@ export const Gallery = () => {
                     style={{
                       marginBottom: radius,
                       color: colors.white,
+                      textAlign: 'center',
                     }}>
                       {item.title}
                   </Text>
