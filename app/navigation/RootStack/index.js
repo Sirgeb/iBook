@@ -6,14 +6,14 @@ import { AuthStack, BottomTab } from '..';
 const Root = createStackNavigator();
 
 export const RootStack = () => {
-  const { user: { isLoggedIn } } = useSelector(state => state);
-  const isLogged = true;
+  const { isLoggedIn } = useSelector(state => state.user);
+
   return (
     <Root.Navigator
       headerMode="none"
     >
       {
-        isLogged ? (
+        isLoggedIn ? (
           <Root.Screen
             name="Home"
             component={BottomTab}
