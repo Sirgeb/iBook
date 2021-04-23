@@ -1,7 +1,8 @@
 import auth from '@react-native-firebase/auth';
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import { googleWebClientId } from '../../config';
+import axios from 'axios';
+import { baseUrl, googleWebClientId } from '../../config';
 import { userActionTypes } from "./user-action-types"
 
 GoogleSignin.configure({
@@ -47,10 +48,30 @@ export const loginInWithFacebook = () => async (dispatch) => {
 
     // Sign-in the user with the credential
     const user = await auth().signInWithCredential(facebookCredential);
+    const { first_name, last_name, email } = user.additionalUserInfo.profile;
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+    
+    const { data: { user: userData, token } } = await axios.post(
+      `${baseUrl}/api/v1/users/social-login`,
+      { 
+        firstname: first_name,
+        lastname: last_name,
+        email
+      },
+      config
+    )
     
     dispatch({
       type: userActionTypes.USER_SOCIAL_LOGIN_SUCCESS,
-      payload: user
+      payload: {
+        user: userData,
+        token
+      }
     })
   } catch (error) {
     dispatch({
@@ -74,12 +95,33 @@ export const loginInWithGoogle = () => async (dispatch) => {
   
     // Sign-in the user with the credential
     const user = await auth().signInWithCredential(googleCredential);
+    const { email, given_name, family_name } = user.additionalUserInfo.profile;
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+    
+    const { data: { user: userData, token } } = await axios.post(
+      `${baseUrl}/api/v1/users/social-login`,
+      { 
+        firstname: given_name,
+        lastname: family_name,
+        email
+      },
+      config
+    )
 
     dispatch({
       type: userActionTypes.USER_SOCIAL_LOGIN_SUCCESS,
-      payload: user
+      payload: {
+        user: userData,
+        token
+      }
     })
   } catch (error) {
+    console.log(error.message);
     dispatch({
       type: userActionTypes.USER_SOCIAL_LOGIN_FAIL,
       payload: error

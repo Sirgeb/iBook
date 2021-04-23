@@ -4,6 +4,7 @@ const initialState = {
   isLoggedIn: false,
   isLoading: false,
   user: null,
+  token: null,
   error: null
 };
 
@@ -25,7 +26,8 @@ const userReducer = (state = initialState, action) => {
       ...state,
       isLoading: false,
       isLoggedIn: true,
-      user: action.payload
+      ...action.payload,
+      error: null
     }
 
     case userActionTypes.USER_LOGOUT_SUCCESS:
@@ -33,7 +35,9 @@ const userReducer = (state = initialState, action) => {
       ...state,
       isLoading: false,
       isLoggedIn: false,
-      user: null
+      user: null,
+      token: null,
+      error: null
     }
 
     case userActionTypes.USER_REGISTER_FAIL:

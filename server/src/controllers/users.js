@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const validateRegisterInput = require('../validation/register');
 const validateLoginInput = require('../validation/login');
+const validateSocialLoginInput = require('../validation/social-login');
 
 /**
  * @desc     Get all users
@@ -19,7 +20,7 @@ const getUsers = async (req, res, next) => {
 
     return res.status(200).json({
       success: true,
-      data: users,
+      users,
       page, 
       pages: Math.ceil(count / limit)
     });
@@ -49,7 +50,7 @@ const getUser = async (req, res, next) => {
 
     return res.status(200).json({
       success: true,
-      data: user
+      user
     });
   } catch (error) {
     return res.status(500).json({
@@ -66,6 +67,7 @@ const getUser = async (req, res, next) => {
  */
 const registerUser = async (req, res, next) => {
   const { isValid, errors } = validateRegisterInput(req.body);
+  
   if (!isValid) {
     return res.status(400).json({
       success: false,
@@ -81,10 +83,60 @@ const registerUser = async (req, res, next) => {
         message: 'Email taken, use another email!'
       })
     }
+    
     const user = await User.create(req.body);
+    const token = await user.getSignedJwtToken();
+
     return res.status(201).json({
       success: true,
-      data: user
+      user,
+      token
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message
+    })
+  }
+};
+
+/**
+ * @desc     Authenticate user with social login
+ * @route    POST /api/v1/users/social-login
+ * @access   Public
+ */
+const socialLogin = async (req, res, next) => {
+  const { isValid, errors } = validateSocialLoginInput(req.body);
+  let token;
+
+  if (!isValid) {
+    return res.status(400).json({
+      success: false,
+      errors
+    });
+  }
+
+  try {
+    // check if user already exist
+    const userData = await User.findOne({ email: req.body.email });
+    if (userData) {
+      token = await userData.getSignedJwtToken();
+
+      return res.status(201).json({
+        success: true,
+        user: userData,
+        token
+      });
+    }
+
+    // create user account if not in existance
+    const user = await User.create(req.body);
+    token = await user.getSignedJwtToken();
+
+    return res.status(201).json({
+      success: true,
+      user,
+      token
     });
   } catch (error) {
     return res.status(500).json({
@@ -129,6 +181,7 @@ const loginUser = async (req, res, next) => {
 
     return res.status(200).json({
       success: true, 
+      user,
       token
     });
 
@@ -173,6 +226,7 @@ const deleteUser = async (req, res, next) => {
 module.exports = {
   registerUser,
   loginUser,
+  socialLogin,
   getUser,
   getUsers,
   deleteUser

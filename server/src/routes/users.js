@@ -6,7 +6,8 @@ const {
   getUsers, 
   registerUser, 
   deleteUser,
-  loginUser
+  loginUser,
+  socialLogin
 } = require('../controllers/users');
 
 const { 
@@ -23,6 +24,9 @@ router.route('/:id')
 
 router.route('/login')
   .post(loginUser)
+
+router.route('/social-login')
+  .post(socialLogin)
 
 router.route('/register')
   .post(registerUser)

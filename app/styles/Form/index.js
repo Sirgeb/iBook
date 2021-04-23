@@ -50,7 +50,8 @@ export const form = StyleSheet.create({
     color: colors.white
   },
   footerTextLink: {
-    color: colors.secondary
+    color: colors.secondary,
+    padding: 20
   },
   validationError: {
     color: colors.red,

@@ -8,7 +8,7 @@ export const MyProfileScreen = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(user.user.additionalUserInfo.profile);
+    console.log(user);
   }, [user])
 
   return (
